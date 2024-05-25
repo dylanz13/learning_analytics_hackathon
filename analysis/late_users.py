@@ -7,8 +7,8 @@ def classify_night_owl(df, threshold):
     return: String array of night owl users
     """
     
-     # Define later hours (20 to 24 and 0 to 5)
-    later_hours = list(range(0, 6)) + list(range(20, 25))
+     # Define later hours (0 to 4) and (20 to 24)
+    later_hours = list(range(0, 5)) + list(range(20, 25))
     
     # Define non-class hours (before 9 AM and after 4 PM)
     non_class_hours = list(range(0, 10)) + list(range(16, 25))
@@ -28,7 +28,7 @@ def classify_night_owl(df, threshold):
 
     # Calculate each user's contribution to the overall later hour events outside class hours
     user_activity['later_contribution'] = user_activity['later_events'] / user_activity['total_events']
-    
+
     # Set the threshold for "active later"
     user_activity['active_later'] = user_activity['later_contribution'] > threshold
 
